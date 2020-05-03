@@ -1,0 +1,328 @@
+---
+title: "H24089030"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+```{r}
+x3<-seq(0,20,0.1);x4<-seq(-9,9,0.1);x<-c(0:10);x1<-c(1:10)
+plot(dpois(x1,2),pch = 19,col = 'red', main = expression(paste("Bin(100,0.02)", 'vs.',"Poi(2)")),xlab = "x",ylab = "pmf",xlim = c(0,10),ylim = c(0,0.4)) 
+lines(x = x,y = dbinom(x,size = 100,prob = 0.02),type = "h",col = 1,lty = 1)
+lines(x = x,y = dpois(x,2),type = "p",col = 'red',pch = 19)
+legend("topright", c("Bin(100,0.02)", "Poi(2)"), col = c(1,"red"), pch = c(NA,19) ,lty = c(1,0),cex = 1)
+#lines(x = x,y = dbinom(x,size = 100,prob = 0.02),type = "p",col = 1,pch = 19)
+#lines(x = x,y = dpois(x,2),type = "h",col = 'red',lty = 1)
+```
+
+Note that$B=\pi*r^{2x+b-\gamma}$ the `echo = FALSE` $$\bar{X}=\Gamma+\frac{\sum\Sigma_{i=1}^{n} X_i}{n}$$ 
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+```{r}
+make.percent <- function(x){
+  x.percent <- round(100*x, digits = 1)
+  x.show <- paste(x.percent, "%", sep = "")
+  return(x.show)
+}
+cat(make.percent(c(0.8933, 0.2344, 0.0764, 0.7736)))
+```
+
+```{r}
+b<-c()
+a<-function(x){
+  k <- 1
+  while(k < x){
+    fac <- c()
+    for(j in 1:k){
+      if((k %% j) == 0){
+        fac <- c(fac, j)
+      }
+    }
+    if(k == sum(fac[-length(fac)])){
+      print(k)
+      b<-c(b,k)
+    }
+    k <- k+1
+  }
+  return(b)
+}
+a(1000)
+```
+
+```{r}
+vec.X.v1 <- c()
+X <- 3
+for(n in 1:7){
+  X <- 2*X + 3
+  vec.X.v1 <- c(vec.X.v1, X)
+}
+vec.X.v1
+```
+
+```{r}
+a=1
+b=1
+d=2
+c<-c()
+for(i in 3:12){
+  c<-c(c,d)
+  a<-b
+  b<-d
+  d<-a+b
+}
+c
+```
+
+```{r}
+basket <- c("r", "b", "y", "y", "y", "r", "r", "b")
+ind.r <- basket == "r"
+a<-sum(ind.r)
+```
+
+```{r}
+b<-0
+d<-0
+coin <- c(0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0,
+          1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0,
+          0, 0, 0, 0, 0, 0, 1)
+for(i in 1:length(coin)){
+  if(coin[i]==1){
+    b<-i-d
+    print(b)
+    d<-i
+  }
+}
+```
+
+```{r}
+a1<-c(5,10,11,NA,1,0,3,8,10,4,0,1,6,7,10,7,0)
+a1<-na.omit(a1)
+a1[1]
+C <- c(3, 4, NA, 12, 0.2, NA, -2)
+for(i in 1:7){
+  if(is.na(C[i])) print(i)
+}
+```
+
+```{r}
+a<-c("Spade_","Heart_","Diamond_","Club_")
+b<-c("A",2:10,"J","Q","K")
+c<-paste(a[1],b,sep="")
+d<-paste(a[2],b,sep="")
+e<-paste(a[3],b,sep="")
+f<-paste(a[4],b,sep="")
+g<-c(c,d,e,f)
+g
+```
+
+```{r}
+v <- c(0.87, -0.47, 0.74, -0.60, -0.23, 0.63, -1.16, -1.08,
+       -2.02, 0.26, 0.85, -1.73, 1.12, -1.32, -1.08, -0.95,
+       -1.73, -0.88)
+vmax<-v[1]
+vmin<-v[1]
+for(i in 1:length(v)){
+  if(v[i]>vmax)
+    vmax<-v[i]
+  if(v[i]<vmin)
+    vmin<-v[i]
+}
+vmax;vmin
+```
+
+```{r}
+Fib1 <- 1
+Fib2 <- 1
+Fibonacci <- c(Fib1)
+for(j in 1:100){
+  if(Fib2 >= 100) next
+  Fibonacci <- c(Fibonacci, Fib2)
+  Fib1 <- Fibonacci[length(Fibonacci) - 1]
+  Fib2 <- Fib1 + Fibonacci[length(Fibonacci)]
+  print(j)
+}
+j
+```
+
+```{r}
+perfect.number <- function(n){
+  k <- 1
+  res<-c()
+  while(k < n){
+    fac <- c()
+    for(j in 1:k){
+      if((k %% j) == 0){
+        fac <- c(fac, j)
+      }
+    }
+    if(k == sum(fac[-length(fac)])){
+      cat(paste(k, "=", sep=" "),
+          paste(fac[-length(fac)], collapse = " + "), "\n")
+      res<-c(res,k)
+    }
+    k <- k+1
+  }
+  return(res)
+}
+```
+
+```{r}
+perfect.number <- function(a, b){
+  k <- a
+  res <- c()
+  ans <- list()
+  while(k < b){
+    fac <- c()
+    for(j in 1:k){
+      if((k %% j) == 0) fac <- c(fac, j)
+    }
+    if(k == sum(fac[-length(fac)])) {
+      res <- c(res, k)
+      ans[[paste(k)]] <- fac[-length(fac)]
+    }
+    k <- k+1
+  }
+  print(res)
+  ans$number <- res
+  return(invisible(ans))
+}
+```
+
+```{r}
+x1<-0
+f <- function(x2){
+  for (j in 1:x2){
+    x <-c()
+    i <- 0
+    while (length(unique(x))<11){
+      x <- c(x,sample(1:6,1)+sample(1:6,1))
+      i <- i+1
+    }
+    if (i==11){
+      x1=x1+1
+  }
+  }
+  print(x1)
+}
+f(10000)
+```
+
+
+```{r}
+files<-function(x){
+  x1<-read.csv(x)
+  f1=0
+  nf1=0
+  f_lifetime1=0
+  for (i in 1:length(x1$Unit.ID)){
+    if(length(grep('F',x1$Unit.ID[i]))>0){
+      f1=f1+1
+      f_lifetime1=f_lifetime1+x1$Cycles[i]
+    }else{
+      nf1=nf1+1
+    }
+  }
+  cat(paste('Number of failures:',f1),'\n')
+  cat(paste('Number of working device:',nf1),'\n')
+  cat(paste('The average of the failure:',f_lifetime1/f1,'\n'))
+}
+```
+
+```{r}
+U <- c(0.89, 0.03, 0.52, 0.41, 0.09, 0.37, 0.71, 0.29, 0.01, 0.92,
+       0.53, 0.14, 0.64, 0.94, 0.89, 0.19, 0.33, 0.31, 0.24, 0.15)
+N<-1
+i<-0
+while(N>10^-8){
+  i<-i+1
+  N<-N*U[i]
+}
+i=i-1
+i
+```
+
+```{r}
+Math <- c(79, 61, 76, 40, 51, 98, 48, 34, 54, 51, 45, 61, 75, 42, 32,
+          61, 56, 82, 22, 33, 19, 60, 91, 49, 44)
+English <- c(87, 54, 96, 63, 58, 75, 60, 74, 46, 94, 57, 69, 69, 55, 79,
+             94, 72, 86, 85, 56, 62, 77, 78, 62, 56)
+scores<-cbind(Math,English)
+rownames(scores)<-1:nrow(scores)
+scores
+h<-rep("D",nrow(scores))
+h[which(Math >= 60 & English >= 60)]="A"
+h[which(Math >= 60 & English < 60)]="B"
+h[which(Math < 60 & English >= 60)]="C"
+for(i in c("A","B","C","D")){
+  cat(i,"=",length(which(h==i)),"\n",sep="")
+}
+for(i in c("A","B","C","D")){
+  cat(paste(i,":",sep=""),which(h==i),"\n")
+}
+```
+
+```{r}
+a1<-c(5,10,11,1,0,3,8,10,4,0,1,6,7,10,7,0)
+a1<-a1[a1 != 0]
+a1
+```
+
+```{r}
+i<-1
+k<-0
+while(i <= length(a1)){
+  if(a1[i]%%2==1){
+    k<-k+1
+  }
+  i<-i+1
+}
+odd<-paste("(4) # of odd:",k)
+```
+
+```{r}
+rep(5:9,5)-rep(4:0,each=5)
+rep(seq(1:5),5)
+rep(0:4,each=5)
+more.colors<-c("red","yellow","blue","green","magenta","cyan")
+color.vec<-more.colors[rep(1:3,4)+rep(0:3,each=3)]
+color.vec
+unique(color.vec)
+table(color.vec)
+sort(color.vec,decreasing = T)
+```
+
+```{r}
+n=200
+sum((1:n)^2)
+n=400
+sum((1:n)^2)
+n=600
+sum((1:n)^2)
+n=800
+sum((1:n)^2)
+n=200
+(n*(n+1)*(2*n+1))%/%6
+n=400
+(n*(n+1)*(2*n+1))%/%6
+n=600
+(n*(n+1)*(2*n+1))%/%6
+n=800
+(n*(n+1)*(2*n+1))%/%6
+a1<-sum((1:n)^2)
+a2<-(n*(n+1)*(2*n+1))%/%6
+a1==a2
+```
+
+```{r}
+score0<-c(81.2,89.6,64.2,91.3,77.4,84.5,NA,91.7,63.5,84.8,NA,87.8,87.9,80.9,74.8,64.3,78.7,91.3,76.9,74.9,87.6,88.4)
+mean(score0)
+max(score0)
+mean(score0,na.rm = T)
+max(score0,na.rm = T)
+```
